@@ -1,0 +1,54 @@
+Kafka :
+--------------------
+Producer
+
+Broker( Kafka Server)
+
+Consumer
+
+Zookeeper
+
+Steps:
+1) Zookeeper to start
+
+C:\Dillip\Software\kafka_2.10-0.10.0.1\kafka_2.10-0.10.0\kafka_2.10-0.10.0.1\bin\windows
+
+
+Change the Zookeepr.properties:
+
+Create the folder as zookeeperData
+
+
+zookeeper-server-start.bat ..\..\config\zookeeper.properties
+dataDir=C:\Dillip\Software\kafka_2.10-0.10.0.1\kafka_2.10-0.10.0\kafka_2.10-0.10.0.1\ZookeeperData
+
+2) Broker to start
+
+Change the server.properties
+
+Create the fole dkafka-logs as shown here.
+
+log.dirs=C:\Dillip\Software\kafka_2.10-0.10.0.1\kafka_2.10-0.10.0\kafka_2.10-0.10.0.1\kafka-logs
+
+kafka-server-start.bat ..\..\config\server.properties
+
+
+
+3) Create topic
+
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mydemotopic
+
+4) How to produce message in topic
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic mydemotopic
+
+5) Start the Consumer  Service
+
+kafka-console-consumer.bat --zookeeper localhost:2181 --topic mydemotopic
+
+6) Now hit any message in Producer , and you will see that message in Consumer.
+
+
+
+
+
